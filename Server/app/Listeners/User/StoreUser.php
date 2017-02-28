@@ -6,8 +6,10 @@ use App\Events\User\UserAdded;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class StoreUser
+class StoreUser implements ShouldQueue
 {
+    use InteractsWithQueue;
+
     /**
      * Create the event listener.
      *
@@ -26,6 +28,13 @@ class StoreUser
      */
     public function handle(UserAdded $event)
     {
-        //
+        if(true) {
+            $this->release(30);
+        }
+    }
+
+    public function failed(UserAdded $event, $exception)
+    {
+        return $exception;
     }
 }

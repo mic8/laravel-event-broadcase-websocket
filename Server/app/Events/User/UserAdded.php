@@ -10,6 +10,8 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
+use App\User;
+
 class UserAdded
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
@@ -21,7 +23,7 @@ class UserAdded
      *
      * @return void
      */
-    public function __construct(array $user)
+    public function __construct(User $user)
     {
         $this->user = $user;
     }
