@@ -1,0 +1,38 @@
+<div class="container" id="user-component">
+  <div class="row" *ngIf="error != ''">
+    <div class="col-md-12">
+      <div class="alert alert-danger">
+        {{ error }}
+        <button class="btn btn-link" (click)="bindUsers()">Reload data</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+
+    </div>
+    <div class="col-md-4">
+      <form role="form">
+        <div class="form-group">
+          <label class="control-label">Email: </label>
+          <input type="email" id="email" class="form-control" placeholder="Input user email">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Password: </label>
+          <input type="password" id="password" class="form-control" placeholder="Input user password">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Password Confirmation: </label>
+          <input type="password" id="password-confirmation" class="form-control" placeholder="Confirm user password">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Name: </label>
+          <input type="text" id="name" class="form-control" placeholder="Input user name">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

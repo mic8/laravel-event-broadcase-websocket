@@ -1,3 +1,30 @@
-<h1>
-  {{title}}
-</h1>
+<header>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a routerLink="/" class="navbar-brand">Socket</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right" style="text-transform: capitalize;">
+        <li *ngFor="let r of routerList">
+          <a [routerLink]="r.path">{{ r.path }}</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<main>
+  <div class="wrapper">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a routerLink="/">Home</a></li>
+        <li style="text-transform: capitalize;">{{ router.url.replace('/', '') }}</li>
+      </ul>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</main>
+<footer style="padding: 30px 0;">
+  <div class="container">
+    <p class="text-center">Copyright &copy; 2017 | All Right Reserved.</p>
+  </div>
+</footer>

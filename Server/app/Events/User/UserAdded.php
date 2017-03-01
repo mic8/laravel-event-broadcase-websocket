@@ -12,7 +12,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 use App\User;
 
-class UserAdded
+class UserAdded implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -35,6 +35,11 @@ class UserAdded
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new Channel('users');
+    }
+
+    public function broadcastWith()
+    {
+        return ['user' => $this->user];
     }
 }
