@@ -23,7 +23,7 @@ class UserRepository extends Repository
 
     public function delete($id)
     {
-        $find = $this->model->where('id', '=', $id)->first();
+        $find = $this->model->find($id);
 
         dispatch(new DeleteUserJob($find));
         event(new UserDeleted($id));
