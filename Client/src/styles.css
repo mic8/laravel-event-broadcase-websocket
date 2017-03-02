@@ -1,5 +1,16 @@
 @import "./assets/bootstrap/css/bootstrap.min.css";
 
-* {
-    outline: none;
+*:active,
+*:focus {
+    outline: none !important;
+}
+
+.error-message {
+    font-size: 12px;
+    color: #ba4e33;
+    border-radius: 4px;
+    padding-top: 10px;
+}
+.error-message > div:not(:last-child) {
+    margin-bottom: 10px;
 }

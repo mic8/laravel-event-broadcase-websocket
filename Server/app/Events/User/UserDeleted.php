@@ -10,22 +10,20 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-use App\User;
-
-class UserAdded implements ShouldBroadcast
+class UserDeleted implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
+    public $id;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct($id)
     {
-        $this->user = $user;
+        $this->id = $id;
     }
 
     /**
@@ -40,11 +38,11 @@ class UserAdded implements ShouldBroadcast
 
     public function broadcastWith()
     {
-        return ['data' => $this->user];
+        return ['data' => $this->id];
     }
 
     public function broadcastAs()
     {
-        return 'user.created';
+        return 'user.deleted';
     }
 }

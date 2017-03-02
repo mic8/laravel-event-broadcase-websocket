@@ -11,8 +11,8 @@
 |
 */
 
-Broadcast::channel('users', function($users) {
-    return $users;
+Broadcast::channel('users', function($user) {
+    return $user;
 });
 
 /*Broadcast::channel('App.User.{id}', function ($user, $id) {

@@ -5,6 +5,9 @@ namespace App\Repositories;
 use App\Jobs\User\CreateUserJob;
 use App\Events\User\UserAdded;
 
+use App\Jobs\User\DeleteUserJob;
+use App\Events\User\UserDeleted;
+
 class UserRepository extends Repository
 {
     protected $modelPath = 'App\User';
@@ -16,5 +19,13 @@ class UserRepository extends Repository
         event(new UserAdded($user));
 
         return $user;
+    }
+
+    public function delete($id)
+    {
+        $find = $this->model->where('id', '=', $id)->first();
+
+        dispatch(new DeleteUserJob($find));
+        event(new UserDeleted($id));
     }
 }

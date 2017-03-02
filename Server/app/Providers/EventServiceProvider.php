@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\User\UserAdded' => [
             'App\Listeners\User\StoreUser'
         ],
+        'App\Events\User\UserDeleted' => [
+            'App\Listeners\User\DeleteUser'
+        ],
         'App\Events\Post\PostAdded' => [
             'App\Listeners\Post\StorePost'
         ]

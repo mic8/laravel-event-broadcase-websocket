@@ -1,0 +1,24 @@
+#banner {
+    background-image: linear-gradient(140deg, #0b4f7e, #0d173f);
+    color: white;
+    margin-top: -20px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+#banner h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 32px;
+}
+#banner .breadcrumb {
+    background: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+}
+#banner .breadcrumb a {
+    color: white !important;
+    font-weight: bold;
+}

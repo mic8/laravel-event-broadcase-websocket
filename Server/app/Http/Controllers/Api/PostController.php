@@ -18,13 +18,13 @@ class PostController extends Controller
 
     public function index()
     {
-        return response()->json($this->postRepository->all());
+        return response()->json(['success' => true, 'data' => $this->postRepository->all()], 200);
     }
 
     public function store(PostStoreRequest $request)
     {
         $post = $this->postRepository->create($request->all());
 
-        return response()->json(['success' => true, 'message' => 'Success create post', 'post' => $post]);
+        return response()->json(['success' => true, 'message' => 'Success create post', 'data' => $post]);
     }
 }

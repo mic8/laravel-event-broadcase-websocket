@@ -9,30 +9,51 @@
   </div>
   <div class="row">
     <div class="col-md-8">
-
+      <p class="text-center" [hidden]="userOptions.isLoaded && !userOptions.isError">
+        Loading...
+      </p>
+      <ul class="list-group" [hidden]="!userOptions.isLoaded || userOptions.isError">
+        <li class="list-group-item" *ngFor="let user of users">
+          <div class="description">
+            <div><strong class="user-name">{{ user.name }}</strong></div>
+            <div class="user-description">
+              <small class="user-email">Email: {{ user.email }}</small> |
+              <small class="user-join">Joined Since: {{ user.created_at }}</small>
+            </div>
+          </div>
+          <div class="control">
+            <button class="btn btn-link btn-sm" (click)="doUpdate(user)">Edit</button>
+            <button class="btn btn-link btn-sm" (click)="doDelete(user)">Delete</button>
+          </div>
+        </li>
+      </ul>
     </div>
     <div class="col-md-4">
-      <form role="form">
-        <div class="form-group">
-          <label class="control-label">Email: </label>
-          <input type="email" id="email" class="form-control" placeholder="Input user email">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <p class="text-center text-capitalize">{{ actionState }} User</p>
+          <form role="form" (submit)="doSubmit()" [formGroup]="userForm">
+            <div class="form-group" [class.has-error]="userFormErrors.email">
+              <label class="control-label">Email: </label>
+              <input type="email" id="email" class="form-control" formControlName="email" placeholder="Input user email" [(ngModel)]="user.email">
+              <div *ngIf="userFormErrors.email" class="error-message" [innerHTML]="userFormErrors.email"></div>
+            </div>
+            <div class="form-group" [class.has-error]="userFormErrors.password">
+              <label class="control-label">Password: </label>
+              <input type="password" id="password" class="form-control" formControlName="password" placeholder="Input user password" [(ngModel)]="user.password">
+              <div *ngIf="userFormErrors.password" class="error-message" [innerHTML]="userFormErrors.password"></div>
+            </div>
+            <div class="form-group" [class.has-error]="userFormErrors.name">
+              <label class="control-label">Name: </label>
+              <input type="text" id="name" class="form-control" formControlName="name" placeholder="Input user name" [(ngModel)]="user.name">
+              <div *ngIf="userFormErrors.name" class="error-message" [innerHTML]="userFormErrors.name"></div>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-default btn-block" [disabled]="!userForm.valid">Submit</button>
+            </div>
+          </form>
         </div>
-        <div class="form-group">
-          <label class="control-label">Password: </label>
-          <input type="password" id="password" class="form-control" placeholder="Input user password">
-        </div>
-        <div class="form-group">
-          <label class="control-label">Password Confirmation: </label>
-          <input type="password" id="password-confirmation" class="form-control" placeholder="Confirm user password">
-        </div>
-        <div class="form-group">
-          <label class="control-label">Name: </label>
-          <input type="text" id="name" class="form-control" placeholder="Input user name">
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-block">Submit</button>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
